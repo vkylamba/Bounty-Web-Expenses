@@ -1,0 +1,23 @@
+{{#if isBeingEdited}}
+<td>{{input type="checkbox" checked=expense.isSelected class="toggle"}}</td>
+<td><button {{action 'Save'}}>Save</button></td>
+<td>{{expense.id}}</td>
+<td>{{input type="date" value=expense.date}}</td>
+<td>{{input type="text" value=expense.description}}</td>
+<td>{{user-select choices=users selected=expense.whoPaid}}</td>
+<td>{{input type="text" value=expense.amount}}</td>
+<td>
+{{user-select-multiple users=users selectedPeople=expense.users}}
+</td>
+{{else}}
+<td>{{input type="checkbox" checked=expense.isSelected class="toggle"}}</td>
+<td><button {{action 'edit'}}>Edit</button></td>
+<td>{{expense.id}}</td>
+<td>{{expense.date}}</td>
+<td>{{expense.description}}</td>
+<td>{{expense.whoPaid.name}}</td>
+<td>{{expense.amount}}</td>
+<td>
+{{users-show users=expense.users}}
+</td>
+{{/if}}

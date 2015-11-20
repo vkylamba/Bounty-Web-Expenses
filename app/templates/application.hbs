@@ -1,3 +1,9 @@
-<h2 id="title">Welcome to Ember</h2>
-
+<h2>Expenses application</h2>
+<ul class="nav nav-tabs">
+  <li role="presentation" {{bind-attr class="isactive1:active"}}>{{#link-to 'persons'}}<a href="#create_group" data-toggle="tab">Create group</a>{{/link-to}}</li>
+  <li role="presentation"{{bind-attr class="isactive2:active"}}>{{#link-to 'expenses'}}<a href="#enter_expenses" data-toggle="tab">Enter expenses</a>{{/link-to}}</li>
+  <li role="presentation"{{bind-attr class="isactive3:active"}}>{{#link-to 'transcations'}}<a href="#compute_payments" data-toggle="tab">Compute payments</a>{{/link-to}}</li>
+</ul>
+<div id="my-tab-content" class="tab-content">
 {{outlet}}
+</div>

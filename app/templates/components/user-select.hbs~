@@ -1,0 +1,6 @@
+<select>
+<option value="-1">Select</option>
+{{#each choices as |choice|}}
+<option value={{choice.id}}>{{choice.name}}</option>
+{{/each}}
+</select>

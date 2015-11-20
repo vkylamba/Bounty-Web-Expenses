@@ -1,0 +1,7 @@
+<h2>Expenses application</h2>
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="persons">Create group</a></li>
+  <li role="presentation"><a href="#">Enter expenses</a></li>
+  <li role="presentation"><a href="#">Compute payments</a></li>
+</ul>
+{{outlet}}

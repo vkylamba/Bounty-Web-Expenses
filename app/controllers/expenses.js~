@@ -1,0 +1,44 @@
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+	actions: {
+		createExpense: function() {
+			// Get the values
+			var date = this.get('newDate');
+			var desc = this.get('newDescription');
+			var whoPaid = this.get('newWhopaid');
+			var amount = this.get('newAmount');
+			var users = this.get('newUsers');
+			
+			//alert(whoPaid);
+			//alert(users);
+			if (date.trim().length == 0) { return; }
+			if (whoPaid === undefined || amount === undefined || desc === undefined) { return; }
+
+			// Create the new Expense model
+			var expense = this.store.createRecord('Expense', {
+			  date: date, 
+			  description: desc,
+			  whoPaid: whoPaid,//this.get('users').objectAt(whoPaid-1),
+			  amount: amount,
+			  users: users//this.get('users'),
+			});
+			
+			// Save the new model
+			expense.save();
+			
+			// Clear the "New Person" text fields
+			this.set('newDate', '');
+			this.set('newDescirption', '');
+			this.set('newWhopaid', '');
+			this.set('newAmount', '');
+			this.set('newUsers', '');
+		},
+		deleteSelected: function()
+		{
+			 var selected = this.get('model').filterBy('isSelected', true);
+			 selected.invoke('deleteRecord');
+			 selected.invoke('save');
+		},
+	}
+});

@@ -1,0 +1,54 @@
+<div class="tab-pane active" id="compute_payments">
+<h2>Payments:</h2>
+<button {{action 'computePayments'}}><span class="glyphicon glyphicon-chevron-down" aria-hidden="true">Show pending payments</span></button>
+{{#if showProposedTranscations}}
+<div class="panel panel-warning">
+	<div class="panel-heading">It would take {{number_of_payments}} payments to even out all debts</div>
+	<div class="panel-body">
+		<table class="table table-striped">
+			<tbody>
+				{{#each proposedTranscations as |trans|}}
+					{{proposed-transcations transcation=trans}}
+				{{/each}}
+				{{!--{{#each people as |person|}}
+					{{person.pay_money_to}}
+				{{/each}}--}}
+				<tr>
+					<td>Select: <span><a {{action "selectAll"}}>{{select_link_name}}</a></span></td>
+					<td><button {{action 'payMoney'}}><span class="glyphicon glyphicon-chevron-up" aria-hidden="true">Mark as paid</span></button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!--<div class="panel-footer">
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>Select: <span>All | None</span></td>
+					<td><button>Mark as paid</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>-->
+</div>
+{{/if}}
+<h3>Details:</h3>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Expenses</td>
+			<td>Totat spent</td>
+			<td>Owes</td>
+			<td>Is owed</td>
+			<td>Balance</td>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each people as |person|}}
+			{{tally-expense person=person}}
+		{{/each}}
+	</tbody>
+</table>
+{{outlet}}
+</div>

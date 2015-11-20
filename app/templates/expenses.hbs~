@@ -1,0 +1,41 @@
+<table class="table table-striped">
+	<tbody>
+			<tr>
+				<!--<td><button class="destroy">Add expense</button></td>-->
+				<td><button {{action "deleteSelected"}}class="destroy">Delete selected</button></td>
+				<td><button class="destroy">Filter</button></td>
+				<td><button class="destroy">Full view</button></td>
+				<td><button class="destroy">Compute payments>></button></td>
+			</tr>
+		</tbody>
+</table>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<td>all</td>
+			<td></td>
+			<td>#</td>
+			<td>Date</td>
+			<td>Description</td>
+			<td>Who paid?</td>
+			<td>Amount</td>
+			<td>For whom?</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td><button {{action 'createExpense'}}>Create</button></td>
+			<td></td>
+			<td>{{input type="date" id="new-expense-date" placeholder="Date" value=newDate}}</td>
+			<td>{{input type="text" id="new-expense-description" placeholder="Description" value=newDescription}}</td>
+			<td>{{user-select choices=users selected=newWhopaid}}</td>
+			<td>{{input type="text" id="new-expense-amount" placeholder="Amount" value=newAmount}}</td>
+			<td>{{user-select-multiple users=users}}</td>
+		</tr>
+		{{#each model as |expense|}}
+			{{expense-details expense=expense users=users}}
+		{{/each}}
+	</tbody>
+</table>
+{{outlet}}

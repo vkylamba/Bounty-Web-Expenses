@@ -1,0 +1,36 @@
+<div class="tab-pane active" id="create_group">
+<h2>People in group:</h2>
+<table class="table table-striped">
+	<tbody>
+			<tr>
+				<!--<td><button class="destroy">Add person</button></td>-->
+				<td><button {{action "deleteSelected"}}class="destroy">Delete selected</button></td>
+				<td>{{#link-to 'expenses'}}<button class="destroy">Enter expenses>></button>{{/link-to}}</td>
+			</tr>
+		</tbody>
+</table>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<td><a {{action "selectAll"}}>{{select_link_name}}</a></td>
+			<td></td>
+			<td>Name</td>
+			<td>Display name</td>
+			<td>Description</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td><button {{action 'createPerson'}}>Create</button></td>
+			<td>{{input type="text" id="new-person-name" placeholder="Name" value=newName}}</td>
+			<td>{{input type="text" id="new-person-displayname" placeholder="Display Name" value=newDisplayname}}</td>
+			<td>{{input type="text" id="new-person-description" placeholder="Description" value=newDescription action="createPerson"}}</td>
+		</tr>
+		{{#each model as |person|}}
+			{{person-details person=person}}
+		{{/each}}
+	</tbody>
+</table>
+{{outlet}}
+</div>

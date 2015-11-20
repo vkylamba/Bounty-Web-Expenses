@@ -1,0 +1,23 @@
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+	selectedPeople: [],
+	isEnabled: false,
+	actions: {
+		enableSplit: function(){
+			this.set('isEnabled', true);
+		},
+		splited: function(){
+			var people = this.get('users');
+			this.set('selectedPeople', people.filterBy('isSelected', true));
+			//alert(this.get('selectedPeople'));
+			this.set('isEnabled', false);
+		},
+	},
+	/*click: function()
+	{
+		//this.set('isEnabled', true);
+		//this.send('enableSplit');
+		this.sendAction('action');
+	},*/
+});

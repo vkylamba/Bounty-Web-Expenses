@@ -1,0 +1,35 @@
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+	itemController: 'person',
+	actions: {
+		createPerson: function() {
+			// Get the values
+			var name = this.get('newName');
+			var disp_name = this.get('newDisplayname');
+			var desc = this.get('newDescription');
+			if (name.trim().length == 0) { return; }
+
+			// Create the new Person model
+			var person = this.store.createRecord('person', {
+			  name: name,
+			  displayName: disp_name,
+			  description: desc,
+			});
+
+			// Clear the "New Person" text fields
+			this.set('newName', '');
+			this.set('newDisplayname', '');
+			this.set('newDescription', '');
+
+			// Save the new model
+			person.save();
+		},
+		deleteSelected: function()
+		{
+			 var selected = this.get('model').filterBy('isSelected', true);
+			 selected.invoke('deleteRecord');
+			 selected.invoke('save');
+		},
+	}
+});

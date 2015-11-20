@@ -1,0 +1,26 @@
+{{#if isEnabled}}
+<div class="panel panel-default">
+  <div class="panel-body">
+  	 <table class="table table-striped">
+  	 	<tbody>
+			{{#each users as |person|}}
+			<tr>
+				<td>{{input type="checkbox" checked=person.isSelected class="toggle"}}</td>
+				<td>{{person.name}}</td>
+				<td>{{input type="text" class="toggle" value=person.latestExpenseShare}}</td>
+			</tr>
+			{{/each}}
+			<tr>
+				<td><button {{action 'splited'}}><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button></td>
+				<!--<td><button {{action 'createExpense'}}>Create</button></td>-->
+			</tr>
+		</tbody>
+    </table>
+  </div>
+</div>
+{{else}}
+<button {{action 'enableSplit'}}><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+{{#each selected as |person|}}
+	{{person.name}},
+{{/each}}
+{{/if}}

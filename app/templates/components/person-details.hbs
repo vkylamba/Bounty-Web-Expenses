@@ -1,0 +1,12 @@
+<td>{{input type="checkbox" checked=person.isSelected class="toggle"}}</td>
+{{#if isBeingEdited}}
+<td><button {{action 'save'}}>Save</button></td>
+<td>{{input type="text" value=person.name}}</td>
+<td>{{input type="text" value=person.displayName}}</td>
+<td>{{input type="text" value=person.description}}</td>
+{{else}}
+<td><button {{action 'edit'}}>Edit</button></td>
+<td>{{person.name}}</td>
+<td>{{person.displayName}}</td>
+<td>{{person.description}}</td>
+{{/if}}
